@@ -23,7 +23,7 @@ public class Main {
         int[] numbersArray = Arrays.stream(numbers.split(",")).mapToInt(Integer::parseInt).toArray();
 
         //Выводим числа(наибольшее и найменьшее)
-        PrintLargerAndSmallerNumber objPrintLagerAndSmaller = new PrintLargerAndSmallerNumber();
+        PrinterLargerAndSmallerNumber objPrintLagerAndSmaller = new PrinterLargerAndSmallerNumber();
         objPrintLagerAndSmaller.printLargerAndSmallerNumbers(numbersArray);
     }
 }
