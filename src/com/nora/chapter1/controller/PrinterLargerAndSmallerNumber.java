@@ -1,4 +1,4 @@
-package com.nora.controller;
+package com.nora.chapter1.controller;
 
 /**
  * Created by nora on 14.01.17.
