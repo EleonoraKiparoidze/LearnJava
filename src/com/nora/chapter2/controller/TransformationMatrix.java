@@ -7,13 +7,14 @@ import java.util.Arrays;
  */
 public class TransformationMatrix {
     public int[][] moveZerosToEnd(int matrix[][]) {
+
         int sizeArray = matrix[0].length * matrix.length;
         int[] array = new int[sizeArray];
 
         int k = 0;
-        for (int i = 0; i < matrix.length; i++) {
+        for (int[] aMatrix : matrix) {
             for (int j = 0; j < matrix[0].length; j++) {
-                array[k++] = matrix[i][j];
+                array[k++] = aMatrix[j];
             }
         }
 
