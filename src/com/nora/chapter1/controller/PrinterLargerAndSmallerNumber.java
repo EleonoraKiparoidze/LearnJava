@@ -6,7 +6,7 @@ package com.nora.chapter1.controller;
 public class PrinterLargerAndSmallerNumber {
     public void printLargerAndSmallerNumbers(int[] arrayNumbers) {
         FindLargerAndSmallerNumber objNumbers = new FindLargerAndSmallerNumber();
-        System.out.println("Larger number -> " + objNumbers.findLarger(arrayNumbers));
-        System.out.println("Smaller number -> " + objNumbers.findSmaller(arrayNumbers));
+        System.out.println("Larger number -> " + Integer.toString(objNumbers.findLarger(arrayNumbers)));
+        System.out.println("Smaller number -> " + Integer.toString(objNumbers.findSmaller(arrayNumbers)));
     }
 }
