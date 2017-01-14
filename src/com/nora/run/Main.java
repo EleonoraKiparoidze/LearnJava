@@ -1,5 +1,5 @@
 package com.nora.run;
-import com.nora.model.*;
+import com.nora.controller.*;
 
 import java.util.Arrays;
 import java.util.Scanner;
