@@ -1,7 +1,5 @@
 package com.nora.chapter2.controller;
 
-import java.util.Arrays;
-
 /**
  * Created by nora on 14.01.17.
  */
