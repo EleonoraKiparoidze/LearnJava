@@ -28,7 +28,7 @@ public class Main {
         //Перемещаем все нули в конец
         System.out.println("Transformation Matrix -->");
         TransformationMatrix objTransformation = new TransformationMatrix();
-        int newMatrix [][] = objTransformation.moveZerosToEnd(sizeMatrix);
+        int newMatrix [][] = objTransformation.moveZerosToEnd(sizeMatrix,matrix);
         objPrinter.printMatrix(newMatrix);
     }
 }
