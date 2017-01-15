@@ -1,17 +1,21 @@
 package com.nora.chapter3.controller;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
 /**
  * Created by nora on 15.01.17.
  */
-public class Point {
+public class Point  implements Serializable{
     private double x;
     private double y;
 
     @Override
     public String toString() {
-        return "(" + x + ";" + y + ")";
+        return "Point{" +
+                "x=" + x +
+                ", y=" + y +
+                '}';
     }
 
     public Point(double x, double y) {
@@ -72,6 +76,7 @@ public class Point {
     public double getLength(Point a, Point b) {
         return Math.sqrt(Math.pow(a.x - b.x, 2) + Math.pow(a.y - b.y, 2));
     }
+
 
     public boolean isSame(Point a, Point b) {
         return a.x == b.x && a.y == b.y;

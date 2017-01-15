@@ -29,6 +29,7 @@ public class Main {
         System.out.println("Transformation Matrix -->");
         TransformationMatrix objTransformation = new TransformationMatrix();
         int newMatrix [][] = objTransformation.moveZerosToEnd(matrix);
+
         objPrinter.printMatrix(newMatrix);
     }
 }
