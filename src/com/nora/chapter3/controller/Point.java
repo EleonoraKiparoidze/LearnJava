@@ -18,49 +18,42 @@ public class Point  implements Serializable{
                 '}';
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Point point = (Point) o;
+
+        if (Double.compare(point.x, x) != 0) return false;
+        return Double.compare(point.y, y) == 0;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result;
+        long temp;
+        temp = Double.doubleToLongBits(x);
+        result = (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(y);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        return result;
+    }
+
+    public Point() {
+    }
+
     public Point(double x, double y) {
         this.x = x;
         this.y = y;
     }
-
-    public Point() {
-        boolean err;
-        do {
-            err = false;
-            System.out.println("Enter abscissa -->");
-            Scanner scan = new Scanner(System.in);
-            if (scan.hasNextDouble()) {
-                x = scan.nextDouble();
-            } else {
-                System.out.println("Error input!");
-                err = true;
-            }
-        } while (err);
-
-        do {
-            err = false;
-            System.out.println("Enter ordinate -->");
-            Scanner scan = new Scanner(System.in);
-            if (scan.hasNextDouble()) {
-                y = scan.nextDouble();
-            } else {
-                System.out.println("Error input!");
-                err = true;
-            }
-        } while (err);
-    }
-
 
     public void setX(double x) {
         this.x = x;
     }
 
     public void setY(double y) {
-        this.y = y;
-    }
-
-    public void setPoint(double x, double y) {
-        this.x = x;
         this.y = y;
     }
 
@@ -72,14 +65,5 @@ public class Point  implements Serializable{
         return y;
     }
 
-
-    public double getLength(Point a, Point b) {
-        return Math.sqrt(Math.pow(a.x - b.x, 2) + Math.pow(a.y - b.y, 2));
-    }
-
-
-    public boolean isSame(Point a, Point b) {
-        return a.x == b.x && a.y == b.y;
-    }
 }
 
