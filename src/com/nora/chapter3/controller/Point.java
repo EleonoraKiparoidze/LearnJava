@@ -6,7 +6,7 @@ import java.util.Scanner;
 /**
  * Created by nora on 15.01.17.
  */
-public class Point  implements Serializable{
+public class Point implements Serializable {
     private double x;
     private double y;
 

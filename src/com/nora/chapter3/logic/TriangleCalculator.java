@@ -8,8 +8,8 @@ import com.nora.chapter3.controller.Triangle;
  */
 public class TriangleCalculator {
 
-    public static double getLength(Point a, Point b){
-return Math.sqrt(Math.pow(a.getX() - b.getX(), 2) + Math.pow(a.getY() - b.getY(), 2));
+    public static double getLength(Point a, Point b) {
+        return Math.sqrt(Math.pow(a.getX() - b.getX(), 2) + Math.pow(a.getY() - b.getY(), 2));
     }
 
     public static double trianglePerimeter(Triangle triangle) {

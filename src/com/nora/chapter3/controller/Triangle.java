@@ -15,9 +15,9 @@ public class Triangle implements Serializable {
     @Override
     public String toString() {
         return "Triangle{" +
-                "x=" + TriangleCalculator.getLength(x,y) +
-                ", y=" + TriangleCalculator.getLength(y,z) +
-                ", z=" + TriangleCalculator.getLength(x,z) +
+                "x=" + TriangleCalculator.getLength(x, y) +
+                ", y=" + TriangleCalculator.getLength(y, z) +
+                ", z=" + TriangleCalculator.getLength(x, z) +
                 '}';
     }
 

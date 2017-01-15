@@ -7,7 +7,7 @@ import com.nora.chapter3.controller.Point;
  */
 public class PointCalculator {
 
-    public static  double getLength(Point a, Point b) {
+    public static double getLength(Point a, Point b) {
         return Math.sqrt(Math.pow(a.getX() - b.getX(), 2) + Math.pow(a.getY() - b.getY(), 2));
     }
 }
