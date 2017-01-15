@@ -16,11 +16,11 @@ public class TriangleCalculator {
         double a = TriangleCalculator.getLength(triangle.getX(), triangle.getY());
         double b = TriangleCalculator.getLength(triangle.getY(), triangle.getZ());
         double c = TriangleCalculator.getLength(triangle.getX(), triangle.getZ());
-        return (a + b + c) / 2;
+        return (a + b + c);
     }
 
     public static double triangleArea(Triangle triangle) {
-        double p = trianglePerimeter(triangle);
+        double p = trianglePerimeter(triangle)/2;
         double a = TriangleCalculator.getLength(triangle.getX(), triangle.getY());
         double b = TriangleCalculator.getLength(triangle.getY(), triangle.getZ());
         double c = TriangleCalculator.getLength(triangle.getX(), triangle.getZ());
