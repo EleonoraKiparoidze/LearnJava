@@ -27,7 +27,7 @@ public class TriangleCalculator {
         return Math.sqrt(p * (p - a) * (p - b) * (p - c));
     }
 
-    public boolean isExist(Triangle triangle) {
+    public static boolean isExist(Triangle triangle) {
         double a = TriangleCalculator.getLength(triangle.getX(), triangle.getY());
         double b = TriangleCalculator.getLength(triangle.getY(), triangle.getZ());
         double c = TriangleCalculator.getLength(triangle.getX(), triangle.getZ());

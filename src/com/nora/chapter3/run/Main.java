@@ -33,9 +33,11 @@ public class Main {
 
         for (int i = 0; i < k; i++){
             triangles[i]= new Triangle(points[i],points[i+1],points[i+2]);
-            System.out.println(triangles[i].toString());
-            System.out.println("Perimeter -->"+Double.toString(TriangleCalculator.trianglePerimeter(triangles[i])));
-            System.out.println("Area -->"+Double.toString(TriangleCalculator.triangleArea(triangles[i])));
+            if(TriangleCalculator.isExist(triangles[i])) {
+                System.out.println(triangles[i].toString());
+                System.out.println("Perimeter -->" + Double.toString(TriangleCalculator.trianglePerimeter(triangles[i])));
+                System.out.println("Area -->" + Double.toString(TriangleCalculator.triangleArea(triangles[i])));
+            }
         }
 
 
