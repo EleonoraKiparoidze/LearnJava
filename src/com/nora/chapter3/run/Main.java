@@ -18,7 +18,7 @@ public class Main {
         int k = scan.nextInt();
         Triangle[] triangles = new Triangle[k];
 
-        //Находим random еочки на плоскости
+        //Находим random точки на плоскости
         Point[] points = new Point[k * 3];
         for (int i = 0; i < k * 3; i++) {
             double x = (double) (Math.round(Math.random() * 10) - 10);
