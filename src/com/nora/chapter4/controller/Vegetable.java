@@ -22,9 +22,7 @@ public abstract class Vegetable implements Serializable {
     }
 
     public Vegetable(String name, double calories) {
-        this.name = name;
-        this.calories = calories;
-        this.weight = 100;
+        this(name, 100, calories);
     }
 
     public String getName() {
