@@ -5,17 +5,18 @@ import java.io.Serializable;
 /**
  * Created by nora on 18.01.17.
  */
+
 public class Ingredients implements Serializable {
 
     private Vegetables vegetables;
-    private int quantity;
+    private double weight;
 
     public Ingredients() {
     }
 
     public Ingredients(Vegetables vegetables, int quantity) {
         this.vegetables = vegetables;
-        this.quantity = quantity;
+        this.weight = quantity;
     }
 
     public Vegetables getVegetables() {
@@ -26,19 +27,19 @@ public class Ingredients implements Serializable {
         this.vegetables = vegetables;
     }
 
-    public int getQuantity() {
-        return quantity;
+    public double getQuantity() {
+        return weight;
     }
 
     public void setQuantity(int quantity) {
-        this.quantity = quantity;
+        this.weight = quantity;
     }
 
     @Override
     public String toString() {
         return "Ingredients{" +
                 "vegetables=" + vegetables +
-                ", quantity=" + quantity +
+                ", weight=" + weight +
                 '}';
     }
 
@@ -49,15 +50,18 @@ public class Ingredients implements Serializable {
 
         Ingredients that = (Ingredients) o;
 
-        if (quantity != that.quantity) return false;
+        if (Double.compare(that.weight, weight) != 0) return false;
         return vegetables == that.vegetables;
 
     }
 
     @Override
     public int hashCode() {
-        int result = vegetables.hashCode();
-        result = 31 * result + quantity;
+        int result;
+        long temp;
+        result = vegetables != null ? vegetables.hashCode() : 0;
+        temp = Double.doubleToLongBits(weight);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
         return result;
     }
 }
