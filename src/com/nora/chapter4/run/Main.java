@@ -5,6 +5,7 @@ import com.nora.chapter4.logic.SaladCalculator;
 import com.nora.chapter4.logic.VegetableCalculator;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by nora on 18.01.17.
@@ -24,14 +25,31 @@ public class Main {
 
         System.out.println(newSalad);
 
-        System.out.println("Tomato total calories --> "+Double.toString(VegetableCalculator.getTotalCalories(tomato)));
+        System.out.println("Tomato total calories --> " + Double.toString(VegetableCalculator.getTotalCalories(tomato)));
 
-        System.out.println("Total salad calories --> "+Double.toString(SaladCalculator.CalculateSaladCalories(newSalad)));
+        System.out.println("Total salad calories --> " + Double.toString(SaladCalculator.CalculateSaladCalories(newSalad)));
 
-        System.out.println("Total salad weight --> "+Double.toString(SaladCalculator.CalculateSaladWeight(newSalad)));
+        System.out.println("Total salad weight --> " + Double.toString(SaladCalculator.CalculateSaladWeight(newSalad)));
 
-        SaladCalculator.sortIngredientsByCalories(newSalad);
 
-        SaladCalculator.findIngredientsByCalories(newSalad,15,18);
+        List<Vegetable> ingredients = SaladCalculator.sortIngredientsByCalories(newSalad);
+        for (Vegetable vegetable : ingredients) {
+            System.out.println(vegetable.getName() + " --> " + vegetable.getCalories() + "kkal");
+        }
+
+
+
+        double lower = 15;
+        double highest = 18;
+        double calories;
+        System.out.println("Ingredients for calories [" + lower + ", " + highest + "]");
+        for (Vegetable vegetable : ingredients) {
+            calories = vegetable.getCalories();
+            if (calories >= lower && calories <= highest) {
+                System.out.println(vegetable.getName() + " --> " + vegetable.getCalories() + "kkal");
+
+            }
+        }
+
     }
 }
