@@ -14,9 +14,9 @@ public class Ingredients implements Serializable {
     public Ingredients() {
     }
 
-    public Ingredients(Vegetables vegetables, int quantity) {
+    public Ingredients(Vegetables vegetables, double weight) {
         this.vegetables = vegetables;
-        this.weight = quantity;
+        this.weight = weight;
     }
 
     public Vegetables getVegetables() {

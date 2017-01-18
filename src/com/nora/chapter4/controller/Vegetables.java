@@ -74,7 +74,7 @@ public enum Vegetables implements Serializable {
 
     @Override
     public String toString() {
-        return "Vegetables{" +
+        return ""+name()+"{" +
                 "calories=" + calories +
                 ", proteins=" + proteins +
                 ", fats=" + fats +
