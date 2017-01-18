@@ -1,9 +1,11 @@
 package com.nora.chapter4.controller;
 
+import java.io.Serializable;
+
 /**
  * Created by nora on 18.01.17.
  */
-public enum Vegetables {
+public enum Vegetables implements Serializable {
 
     //BOILED
     POTATO(109,2.3,0.1,25.2),
