@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * Created by nora on 18.01.17.
  */
-public class Vegetable implements Serializable {
+public abstract class Vegetable implements Serializable {
 
     public Vegetable() {
     }
