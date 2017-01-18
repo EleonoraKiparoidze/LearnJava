@@ -4,7 +4,6 @@ import com.nora.chapter4.controller.*;
 import com.nora.chapter4.logic.SaladCalculator;
 import com.nora.chapter4.logic.VegetableCalculator;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -37,8 +36,6 @@ public class Main {
             System.out.println(vegetable.getName() + " --> " + vegetable.getCalories() + "kkal");
         }
 
-
-
         double lower = 15;
         double highest = 18;
         double calories;
@@ -49,7 +46,7 @@ public class Main {
                 System.out.println(vegetable.getName() + " --> " + vegetable.getCalories() + "kkal");
 
             }
-        }
 
+        }
     }
 }
