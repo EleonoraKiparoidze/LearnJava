@@ -11,7 +11,7 @@ import java.util.Comparator;
 /**
  * Created by nora on 18.01.17.
  */
-public class SaladCalculator implements Serializable {
+public class SaladCalculator {
 
     public static double CalculateSaladCalories(Salad salad){
        ArrayList<Vegetable> ingredients = salad.getIngredients();
