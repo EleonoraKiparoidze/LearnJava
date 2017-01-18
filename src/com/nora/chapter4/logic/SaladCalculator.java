@@ -32,11 +32,16 @@ public class SaladCalculator implements Serializable {
     }
 
     public static void sortIngredientsByCalories(Salad salad) {
+        ArrayList<Vegetable> ingredients = salad.getIngredients();
         Collections.sort(salad.getIngredients(), new Comparator<Vegetable>() {
             @Override
             public int compare(Vegetable o1, Vegetable o2) {
                 return (int)(o1.getCalories()-o2.getCalories());
             }
         });
+        for (Vegetable vegetable : ingredients) {
+                System.out.println(vegetable.getName() + " --> "+vegetable.getCalories() + "kkal");
+
+        }
     }
 }

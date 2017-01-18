@@ -10,8 +10,9 @@ public class Salad  implements Serializable{
     private String name;
     private ArrayList<Vegetable> ingredients = new ArrayList<Vegetable>();
 
-    public Salad(String name, ArrayList<Vegetable> vegetables) {
+    public Salad(String name, ArrayList<Vegetable>  ingredients) {
         this.name = name;
+        this.ingredients =  ingredients;
     }
 
     public Salad(String name) {
