@@ -29,6 +29,9 @@ public class Main {
         System.out.println("Total salad calories --> "+Double.toString(SaladCalculator.CalculateSaladCalories(newSalad)));
 
         System.out.println("Total salad weight --> "+Double.toString(SaladCalculator.CalculateSaladWeight(newSalad)));
+
         SaladCalculator.sortIngredientsByCalories(newSalad);
+
+        SaladCalculator.findIngredientsByCalories(newSalad,15,18);
     }
 }

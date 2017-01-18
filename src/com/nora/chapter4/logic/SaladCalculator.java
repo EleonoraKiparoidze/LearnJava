@@ -44,4 +44,23 @@ public class SaladCalculator implements Serializable {
 
         }
     }
+
+    public static void findIngredientsByCalories(Salad salad, double lower, double highest) {
+        ArrayList<Vegetable> ingredients = salad.getIngredients();
+        Collections.sort(salad.getIngredients(), new Comparator<Vegetable>() {
+            @Override
+            public int compare(Vegetable o1, Vegetable o2) {
+                return (int) (o1.getCalories() - o2.getCalories());
+            }
+        });
+        double calories;
+        System.out.println("Ingredients for calories [" + lower+ ", " + highest + "]");
+        for (Vegetable vegetable : ingredients) {
+            calories = vegetable.getCalories();
+            if (calories >= lower && calories <= highest) {
+                System.out.println(vegetable.getName() + " --> " + vegetable.getCalories() + "kkal");
+
+            }
+        }
+    }
 }
