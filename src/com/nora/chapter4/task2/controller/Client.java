@@ -3,6 +3,8 @@ package com.nora.chapter4.task2.controller;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -68,7 +70,7 @@ public class Client implements Serializable {
         return "Client{" +
                 "name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
-                ", year Of Birth=" + yearOfBirth +
+                ", age=" + (Calendar.getInstance().get(Calendar.YEAR)- yearOfBirth) +
                 ", accounts=" + accounts +
                 '}';
     }

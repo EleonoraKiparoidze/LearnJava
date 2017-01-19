@@ -97,8 +97,8 @@ public abstract class Account implements Serializable {
 
     @Override
     public String toString() {
-        return "Account{" +
-                "name Account='" + nameAccount + '\'' +
+        return "\nAccount{" +
+                "'" + nameAccount + '\'' +
                 ", positive Balance=" + positiveBalance +
                 ", negative Balance=" + negativeBalance +
                 ", not Blocked=" + notBlocked +
