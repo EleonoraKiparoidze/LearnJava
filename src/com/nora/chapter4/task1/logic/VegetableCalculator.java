@@ -1,6 +1,6 @@
-package com.nora.chapter4.logic;
+package com.nora.chapter4.task1.logic;
 
-import com.nora.chapter4.controller.Vegetable;
+import com.nora.chapter4.task1.controller.Vegetable;
 
 
 /**

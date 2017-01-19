@@ -1,9 +1,8 @@
-package com.nora.chapter4.logic;
+package com.nora.chapter4.task1.logic;
 
-import com.nora.chapter4.controller.Salad;
-import com.nora.chapter4.controller.Vegetable;
+import com.nora.chapter4.task1.controller.Salad;
+import com.nora.chapter4.task1.controller.Vegetable;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -33,7 +32,7 @@ public class SaladCalculator {
 
     public static List<Vegetable> sortIngredientsByCalories(Salad salad) {
         List<Vegetable> ingredients = salad.getIngredients();
-        Collections.sort(salad.getIngredients(), new Comparator<Vegetable>() {
+        Collections.sort(ingredients, new Comparator<Vegetable>() {
             @Override
             public int compare(Vegetable o1, Vegetable o2) {
                 return (int) (o1.getCalories() - o2.getCalories());

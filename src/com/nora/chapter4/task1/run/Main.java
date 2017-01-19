@@ -1,8 +1,8 @@
-package com.nora.chapter4.run;
+package com.nora.chapter4.task1.run;
 
-import com.nora.chapter4.controller.*;
-import com.nora.chapter4.logic.SaladCalculator;
-import com.nora.chapter4.logic.VegetableCalculator;
+import com.nora.chapter4.task1.controller.*;
+import com.nora.chapter4.task1.logic.SaladCalculator;
+import com.nora.chapter4.task1.logic.VegetableCalculator;
 
 import java.util.List;
 
