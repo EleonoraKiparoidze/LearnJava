@@ -10,6 +10,7 @@ public abstract class Account implements Serializable {
     private String nameAccount;
     private String category;
     private double positiveBalance;
+    private double negativeBalance;
     private boolean notBlocked;
 
     public Account() {
@@ -40,13 +41,6 @@ public abstract class Account implements Serializable {
         this.notBlocked = notBlocked;
     }
 
-    @Override
-    public String toString() {
-        return "Account{" +
-                "positiveBalance=" + positiveBalance +
-                ", not Blocked=" + notBlocked +
-                '}';
-    }
 
     public String getNameAccount() {
         return nameAccount;
@@ -64,6 +58,14 @@ public abstract class Account implements Serializable {
         this.category = category;
     }
 
+    public double getNegativeBalance() {
+        return negativeBalance;
+    }
+
+    public void setNegativeBalance(double negativeBalance) {
+        this.negativeBalance = negativeBalance;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -72,6 +74,7 @@ public abstract class Account implements Serializable {
         Account account = (Account) o;
 
         if (Double.compare(account.positiveBalance, positiveBalance) != 0) return false;
+        if (Double.compare(account.negativeBalance, negativeBalance) != 0) return false;
         if (notBlocked != account.notBlocked) return false;
         if (nameAccount != null ? !nameAccount.equals(account.nameAccount) : account.nameAccount != null) return false;
         return category != null ? category.equals(account.category) : account.category == null;
@@ -86,7 +89,19 @@ public abstract class Account implements Serializable {
         result = 31 * result + (category != null ? category.hashCode() : 0);
         temp = Double.doubleToLongBits(positiveBalance);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(negativeBalance);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
         result = 31 * result + (notBlocked ? 1 : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "name Account='" + nameAccount + '\'' +
+                ", positive Balance=" + positiveBalance +
+                ", negative Balance=" + negativeBalance +
+                ", not Blocked=" + notBlocked +
+                '}';
     }
 }

@@ -10,11 +10,12 @@ import java.util.List;
  */
 public class СounterMoney {
 
-    public static double CalculateTotalPositiveBalance(Client client) {
-       double totalSum = 0;
+    public static double CalculateTotalBalance(Client client) {
+        double totalSum = 0;
         List<Account> accounts = client.getAccounts();
-        for(Account account: accounts) {
-           totalSum += account.getPositiveBalance();
+        for (Account account : accounts) {
+            totalSum += account.getPositiveBalance();
+            totalSum -= account.getNegativeBalance();
         }
         return totalSum;
     }
