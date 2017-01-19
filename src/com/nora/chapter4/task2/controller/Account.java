@@ -10,14 +10,12 @@ public abstract class Account implements Serializable {
     private String nameAccount;
     private String category;
     private double positiveBalance;
-    private double negativeBalance;
     private boolean notBlocked;
 
     public Account() {
         this.nameAccount = "";
         this.category = "";
         this.positiveBalance = 0;
-        this.negativeBalance = 0;
         this.notBlocked = true;
     }
 
@@ -34,14 +32,6 @@ public abstract class Account implements Serializable {
         this.positiveBalance = positiveBalance;
     }
 
-    public double getNegativeBalance() {
-        return negativeBalance;
-    }
-
-    public void setNegativeBalance(double negativeBalance) {
-        this.negativeBalance = negativeBalance;
-    }
-
     public boolean isNotBlocked() {
         return notBlocked;
     }
@@ -54,7 +44,6 @@ public abstract class Account implements Serializable {
     public String toString() {
         return "Account{" +
                 "positiveBalance=" + positiveBalance +
-                ", negativeBalance=" + negativeBalance +
                 ", not Blocked=" + notBlocked +
                 '}';
     }
@@ -83,7 +72,6 @@ public abstract class Account implements Serializable {
         Account account = (Account) o;
 
         if (Double.compare(account.positiveBalance, positiveBalance) != 0) return false;
-        if (Double.compare(account.negativeBalance, negativeBalance) != 0) return false;
         if (notBlocked != account.notBlocked) return false;
         if (nameAccount != null ? !nameAccount.equals(account.nameAccount) : account.nameAccount != null) return false;
         return category != null ? category.equals(account.category) : account.category == null;
@@ -97,8 +85,6 @@ public abstract class Account implements Serializable {
         result = nameAccount != null ? nameAccount.hashCode() : 0;
         result = 31 * result + (category != null ? category.hashCode() : 0);
         temp = Double.doubleToLongBits(positiveBalance);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(negativeBalance);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         result = 31 * result + (notBlocked ? 1 : 0);
         return result;
