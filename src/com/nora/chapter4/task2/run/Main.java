@@ -25,6 +25,6 @@ public class Main {
 
         System.out.println(newClient);
 
-        System.out.println("Total  sum  --> " +Double.toString(СounterMoney.CalculateTotalBalance(newClient)));
+        System.out.println("Total  sum  --> " +Double.toString(СounterMoney.calculateTotalBalance(newClient)));
     }
 }

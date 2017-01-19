@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class СounterMoney {
 
-    public static double CalculateTotalBalance(Client client) {
+    public static double calculateTotalBalance(Client client) {
         double totalSum = 0;
         List<Account> accounts = client.getAccounts();
         for (Account account : accounts) {
@@ -22,7 +22,7 @@ public class СounterMoney {
         return totalSum;
     }
 
-    public static List<Account> SortAccountByBalance(Client client) {
+    public static List<Account> sortAccountByBalance(Client client) {
         List<Account> accounts = client.getAccounts();
         Collections.sort(accounts, new Comparator<Account>() {
             @Override
