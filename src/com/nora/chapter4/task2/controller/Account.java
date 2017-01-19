@@ -5,22 +5,25 @@ import java.io.Serializable;
 /**
  * Created by nora on 19.01.17.
  */
-public abstract class Account implements Serializable{
+public abstract class Account implements Serializable {
 
     private String nameAccount;
     private String category;
     private double positiveBalance;
-    private  double negativeBalance;
-    private boolean blocked;
+    private double negativeBalance;
+    private boolean notBlocked;
 
     public Account() {
         this.nameAccount = "";
+        this.category = "";
         this.positiveBalance = 0;
         this.negativeBalance = 0;
-        this.blocked = true;
+        this.notBlocked = true;
     }
+
     public Account(String nameAccount) {
-       this.nameAccount = nameAccount;
+        super();
+        this.nameAccount = nameAccount;
     }
 
     public double getPositiveBalance() {
@@ -39,12 +42,12 @@ public abstract class Account implements Serializable{
         this.negativeBalance = negativeBalance;
     }
 
-    public boolean isBlocked() {
-        return blocked;
+    public boolean isNotBlocked() {
+        return notBlocked;
     }
 
-    public void setBlocked(boolean blocked) {
-        this.blocked = blocked;
+    public void setNotBlocked(boolean notBlocked) {
+        this.notBlocked = notBlocked;
     }
 
     @Override
@@ -52,33 +55,8 @@ public abstract class Account implements Serializable{
         return "Account{" +
                 "positiveBalance=" + positiveBalance +
                 ", negativeBalance=" + negativeBalance +
-                ", blocked=" + blocked +
+                ", not Blocked=" + notBlocked +
                 '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Account account = (Account) o;
-
-        if (Double.compare(account.positiveBalance, positiveBalance) != 0) return false;
-        if (Double.compare(account.negativeBalance, negativeBalance) != 0) return false;
-        return blocked == account.blocked;
-
-    }
-
-    @Override
-    public int hashCode() {
-        int result;
-        long temp;
-        temp = Double.doubleToLongBits(positiveBalance);
-        result = (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(negativeBalance);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        result = 31 * result + (blocked ? 1 : 0);
-        return result;
     }
 
     public String getNameAccount() {
@@ -95,5 +73,34 @@ public abstract class Account implements Serializable{
 
     public final void setCategory(String category) {
         this.category = category;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Account account = (Account) o;
+
+        if (Double.compare(account.positiveBalance, positiveBalance) != 0) return false;
+        if (Double.compare(account.negativeBalance, negativeBalance) != 0) return false;
+        if (notBlocked != account.notBlocked) return false;
+        if (nameAccount != null ? !nameAccount.equals(account.nameAccount) : account.nameAccount != null) return false;
+        return category != null ? category.equals(account.category) : account.category == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result;
+        long temp;
+        result = nameAccount != null ? nameAccount.hashCode() : 0;
+        result = 31 * result + (category != null ? category.hashCode() : 0);
+        temp = Double.doubleToLongBits(positiveBalance);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(negativeBalance);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        result = 31 * result + (notBlocked ? 1 : 0);
+        return result;
     }
 }

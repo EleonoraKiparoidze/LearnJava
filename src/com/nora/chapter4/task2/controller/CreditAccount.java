@@ -3,8 +3,9 @@ package com.nora.chapter4.task2.controller;
 /**
  * Created by nora on 19.01.17.
  */
-public class CreditAccount extends Account{
+public class CreditAccount extends Account {
     private double limit;
+
     public CreditAccount() {
         super();
         super.setCategory("Credit Account");
