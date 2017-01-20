@@ -10,7 +10,6 @@ public class Park {
 
     private String parkName;
     private List<Attraction> attractions = new ArrayList<Attraction>();
-    private Attraction attraction;
     private String workTime;
 
     public Park() {
@@ -32,27 +31,26 @@ public class Park {
         private String nameAttraction;
         private double price;
 
-        public Attraction() {
+        Attraction() {
             nameAttraction = "";
             price = 0;
         }
 
-        public String getNameAttraction() {
+        String getNameAttraction() {
             return nameAttraction;
         }
 
-        public void setNameAttraction(String nameAttraction) {
+        void setNameAttraction(String nameAttraction) {
             this.nameAttraction = nameAttraction;
         }
 
-        public double getPrice() {
+        double getPrice() {
             return price;
         }
 
-        public void setPrice(double price) {
+        void setPrice(double price) {
             this.price = price;
         }
-
     }
 
     public String getParkName() {
@@ -72,13 +70,13 @@ public class Park {
     }
 
     public void setAttraction(String nameAttraction, double price) {
-        attraction = new Attraction();
+        Attraction attraction = new Attraction();
         attraction.setNameAttraction(nameAttraction);
         attraction.setPrice(price);
         attractions.add(attraction);
     }
 
-    public String attractionInformation() {
+    private String attractionInformation() {
         String info = "";
         for (Attraction attraction : attractions) {
             info += "'" + attraction.getNameAttraction() + "'" + "( price for one ticket = " + attraction.getPrice() + ")";
