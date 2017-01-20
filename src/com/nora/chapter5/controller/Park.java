@@ -10,7 +10,7 @@ public class Park {
 
     private String parkName;
     private List<Attraction> attractions = new ArrayList<Attraction>();
-    Attraction attraction;
+    private Attraction attraction;
     private String workTime;
 
     public Park() {
@@ -24,7 +24,7 @@ public class Park {
     }
 
     public Park(String parkName) {
-        this(parkName,"");
+        this(parkName, "");
     }
 
     private class Attraction {
@@ -71,18 +71,18 @@ public class Park {
         this.workTime = workTime;
     }
 
-    public void  setAttraction (String nameAttraction,double price){
+    public void setAttraction(String nameAttraction, double price) {
         attraction = new Attraction();
         attraction.setNameAttraction(nameAttraction);
         attraction.setPrice(price);
         attractions.add(attraction);
     }
 
-    public String attractionInformation(){
-        String info ="";
-            for(Attraction attraction:attractions) {
-                info += "'" + attraction.getNameAttraction() + "'" + "( price for one ticket = " + attraction.getPrice() + ")";
-            }
+    public String attractionInformation() {
+        String info = "";
+        for (Attraction attraction : attractions) {
+            info += "'" + attraction.getNameAttraction() + "'" + "( price for one ticket = " + attraction.getPrice() + ")";
+        }
         return info;
     }
 
@@ -90,7 +90,7 @@ public class Park {
     public String toString() {
         return "Park{" +
                 "parkName='" + parkName + '\'' +
-                ", attraction --> {" + attractionInformation() +"}"+
+                ", attraction --> {" + attractionInformation() + "}" +
                 ", workTime='" + workTime + '\'' +
                 '}';
     }
