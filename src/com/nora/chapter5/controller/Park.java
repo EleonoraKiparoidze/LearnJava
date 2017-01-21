@@ -13,8 +13,6 @@ public class Park {
     private String workTime;
 
     public Park() {
-        parkName = "";
-        workTime = "";
     }
 
     public Park(String parkName, String workTime) {
@@ -23,7 +21,7 @@ public class Park {
     }
 
     public Park(String parkName) {
-        this(parkName, "");
+        this.parkName = parkName;
     }
 
     private class Attraction {
@@ -32,8 +30,6 @@ public class Park {
         private double price;
 
         Attraction() {
-            nameAttraction = "";
-            price = 0;
         }
 
         String getNameAttraction() {
