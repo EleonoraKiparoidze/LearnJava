@@ -39,10 +39,8 @@ public class Bus implements Collection{
         return passengerList;
     }
 
-    public void setPassengerList(String name) {
-        Passenger passenger = new Passenger();
-        passenger.setName(name);
-        passengerList.add(passenger);
+    public void setPassengerList(List<Passenger> passengerList) {
+        this.passengerList = passengerList;
     }
 
     @Override
@@ -111,22 +109,22 @@ public class Bus implements Collection{
         return new Object[0];
     }
 
-    private class Passenger{
+    public static class Passenger implements Collection{
 
         private String name;
 
-        private Passenger(String name) {
+        public Passenger(String name) {
             this.name = name;
         }
 
-        private Passenger() {
+        public Passenger() {
         }
 
-        private String getName() {
+        public String getName() {
             return name;
         }
 
-        private void setName(String name) {
+        public void setName(String name) {
             this.name = name;
         }
 
@@ -135,6 +133,71 @@ public class Bus implements Collection{
             return "Passenger{" +
                     "name='" + name + '\'' +
                     '}';
+        }
+
+        @Override
+        public int size() {
+            return 0;
+        }
+
+        @Override
+        public boolean isEmpty() {
+            return false;
+        }
+
+        @Override
+        public boolean contains(Object o) {
+            return false;
+        }
+
+        @Override
+        public Iterator iterator() {
+            return null;
+        }
+
+        @Override
+        public Object[] toArray() {
+            return new Object[0];
+        }
+
+        @Override
+        public boolean add(Object o) {
+            return false;
+        }
+
+        @Override
+        public boolean remove(Object o) {
+            return false;
+        }
+
+        @Override
+        public boolean addAll(Collection c) {
+            return false;
+        }
+
+        @Override
+        public void clear() {
+
+        }
+
+        @Override
+        public boolean retainAll(Collection c) {
+            return false;
+        }
+
+        @Override
+        public boolean removeAll(Collection c) {
+            return false;
+        }
+
+        @Override
+        public boolean containsAll(Collection c) {
+            return false;
+        }
+
+        @Override
+        public Object[] toArray(Object[] a) {
+            return new Object[0];
         }
     }
 
