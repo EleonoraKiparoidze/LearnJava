@@ -1,6 +1,6 @@
-package com.nora.chapter5.run;
+package com.nora.chapter5.task1.run;
 
-import com.nora.chapter5.controller.Park;
+import com.nora.chapter5.task1.controller.Park;
 
 /**
  * Created by nora on 20.01.17.
