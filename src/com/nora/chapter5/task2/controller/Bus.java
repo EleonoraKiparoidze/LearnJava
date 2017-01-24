@@ -5,11 +5,11 @@ import java.util.*;
 /**
  * Created by nora on 22.01.17.
  */
-public class Bus implements Collection{
+public class Bus implements Collection {
 
     private int busNumber;
     private double seatsNumber;
-    private List<Passenger> passengerList= new ArrayList<Passenger>();
+    private List<Passenger> passengerList = new ArrayList<Passenger>();
 
     public Bus(int busNumber, double seatsNumber) {
         this.busNumber = busNumber;
@@ -35,14 +35,6 @@ public class Bus implements Collection{
         this.seatsNumber = seatsNumber;
     }
 
-    public List<Passenger> getPassengerList() {
-        return passengerList;
-    }
-
-    public void setPassengerList(List<Passenger> passengerList) {
-        this.passengerList = passengerList;
-    }
-
     @Override
     public int size() {
         return 0;
@@ -50,66 +42,68 @@ public class Bus implements Collection{
 
     @Override
     public boolean isEmpty() {
-        return false;
+        return passengerList.isEmpty();
     }
 
     @Override
     public boolean contains(Object o) {
-        return false;
+        return passengerList.contains((Passenger) o);
     }
 
     @Override
     public Iterator iterator() {
-        return null;
+        return passengerList.iterator();
     }
 
     @Override
     public Object[] toArray() {
-        return new Object[0];
+        return passengerList.toArray();
     }
 
     @Override
     public boolean add(Object o) {
-
-        return false;
+        boolean add;
+        add = passengerList.add((Passenger) o);
+        return add;
     }
 
     @Override
     public boolean remove(Object o) {
-        return false;
+        return passengerList.remove((Passenger)o);
     }
 
     @Override
     public boolean addAll(Collection c) {
-        return false;
+        return passengerList.addAll(c);
     }
 
     @Override
     public void clear() {
-
+        passengerList.clear();
     }
 
     @Override
     public boolean retainAll(Collection c) {
-        return false;
+        return passengerList.retainAll(c);
     }
 
     @Override
     public boolean removeAll(Collection c) {
-        return false;
+        return passengerList.retainAll(c);
     }
 
     @Override
     public boolean containsAll(Collection c) {
-        return false;
+        return passengerList.containsAll(c);
     }
 
     @Override
     public Object[] toArray(Object[] a) {
-        return new Object[0];
+        return passengerList.toArray(a);
     }
 
-    public static class Passenger implements Collection{
+
+    public static class Passenger {
 
         private String name;
 
@@ -133,71 +127,6 @@ public class Bus implements Collection{
             return "Passenger{" +
                     "name='" + name + '\'' +
                     '}';
-        }
-
-        @Override
-        public int size() {
-            return 0;
-        }
-
-        @Override
-        public boolean isEmpty() {
-            return false;
-        }
-
-        @Override
-        public boolean contains(Object o) {
-            return false;
-        }
-
-        @Override
-        public Iterator iterator() {
-            return null;
-        }
-
-        @Override
-        public Object[] toArray() {
-            return new Object[0];
-        }
-
-        @Override
-        public boolean add(Object o) {
-            return false;
-        }
-
-        @Override
-        public boolean remove(Object o) {
-            return false;
-        }
-
-        @Override
-        public boolean addAll(Collection c) {
-            return false;
-        }
-
-        @Override
-        public void clear() {
-
-        }
-
-        @Override
-        public boolean retainAll(Collection c) {
-            return false;
-        }
-
-        @Override
-        public boolean removeAll(Collection c) {
-            return false;
-        }
-
-        @Override
-        public boolean containsAll(Collection c) {
-            return false;
-        }
-
-        @Override
-        public Object[] toArray(Object[] a) {
-            return new Object[0];
         }
     }
 
