@@ -5,11 +5,11 @@ import java.util.*;
 /**
  * Created by nora on 22.01.17.
  */
-public class Bus implements Collection {
+public class Bus implements Collection<Bus.Passenger> {
 
     private int busNumber;
     private double seatsNumber;
-    private List<Passenger> passengerList = new ArrayList<Passenger>();
+    private List<Passenger> passengerList = new ArrayList<>();
 
     public Bus(int busNumber, double seatsNumber) {
         this.busNumber = busNumber;
@@ -61,10 +61,8 @@ public class Bus implements Collection {
     }
 
     @Override
-    public boolean add(Object o) {
-        boolean add;
-        add = passengerList.add((Passenger) o);
-        return add;
+    public boolean add(Passenger passenger) {
+        return  passengerList.add(passenger);
     }
 
     @Override
