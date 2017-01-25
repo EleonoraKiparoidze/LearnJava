@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Created by nora on 25.01.17.
  */
-public  class StudentСalculator {
+public  class StudentCalculator {
 
     public static int getAge(Student student){
         int day = student.getDay();
