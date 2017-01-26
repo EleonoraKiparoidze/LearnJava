@@ -8,7 +8,11 @@ import java.util.List;
  * Created by nora on 25.01.17.
  */
 public abstract class Student implements IEnrollee{
-    private String firstName, middleName, lastName, faculty, address;
+    private String firstName;
+    private String middleName;
+    private String lastName;
+    private String faculty;
+    private String address;
     private int day;
     private int month;
     private int year;
