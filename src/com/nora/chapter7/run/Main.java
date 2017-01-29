@@ -1,9 +1,10 @@
 package com.nora.chapter7.run;
 
+import com.nora.chapter7.logic.TextDivider;
 import com.nora.chapter7.logic.TextReader;
 
 import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.util.List;
 
 /**
  * Created by nora on 29.01.17.
@@ -15,5 +16,9 @@ public class Main {
         StringBuffer stringBuffer = TextReader.readFile("/home/nora/IdeaProjects/LearnJava/src/com/nora/chapter7/file/text.txt");
 
         TextReader.printText(stringBuffer);
+
+       List<String> sentencesList = TextDivider.dividedText(stringBuffer);
+
+        TextDivider.printSentences(sentencesList);
     }
 }
