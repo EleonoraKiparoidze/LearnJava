@@ -1,5 +1,6 @@
 package com.nora.chapter7.run;
 
+import com.nora.chapter7.logic.SentenceDivider;
 import com.nora.chapter7.logic.TextDivider;
 import com.nora.chapter7.logic.TextReader;
 
@@ -17,8 +18,25 @@ public class Main {
 
         TextReader.printText(stringBuffer);
 
-       List<String> sentencesList = TextDivider.dividedText(stringBuffer);
+        List<String> sentencesList = TextDivider.dividedText(stringBuffer);
 
         TextDivider.printSentences(sentencesList);
+
+        List<String> wordsList;
+
+        String strWithMaxSameWords = null;
+        int max = 0;
+        for (String sentence : sentencesList) {
+            wordsList = SentenceDivider.dividedSentences(sentence);
+            //SentenceDivider.printWords(wordsList);
+            int count = SentenceDivider.countSameWords(wordsList);
+            //System.out.println(count);
+            if (count > max) {
+                max = count;
+                strWithMaxSameWords = sentence;
+            }
+
+        }
+        System.out.println("Sentence with max same words --> " + strWithMaxSameWords);
     }
 }
