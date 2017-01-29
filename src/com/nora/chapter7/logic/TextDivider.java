@@ -12,8 +12,7 @@ import java.util.regex.Pattern;
 public class TextDivider {
 
     public static List<String> dividedText (StringBuffer buffer) {
-
-        Pattern pattern = Pattern.compile("(.+)([.?!])");
+        Pattern pattern = Pattern.compile("[[А-Яа-я]+[,]?[\\p{Space}]+]+[А-Яа-я]+[.?!]");
         Matcher matcher = pattern.matcher(buffer);
 
         List<String> sentenceList = new ArrayList<String>();

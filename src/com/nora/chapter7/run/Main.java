@@ -16,7 +16,7 @@ public class Main {
 
         StringBuffer stringBuffer = TextReader.readFile("/home/nora/IdeaProjects/LearnJava/src/com/nora/chapter7/file/text.txt");
 
-        TextReader.printText(stringBuffer);
+        //TextReader.printText(stringBuffer);
 
         List<String> sentencesList = TextDivider.dividedText(stringBuffer);
 
