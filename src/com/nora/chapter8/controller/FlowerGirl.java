@@ -1,17 +1,17 @@
 package com.nora.chapter8.controller;
 
+import com.nora.chapter8.exception.FlowerLogicException;
+
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
  * Created by nora on 03.02.17.
  */
-public class FlowerGirl implements Serializable{
+public class FlowerGirl implements Serializable {
     private String name;
-    private Map flowers = new HashMap<Flower,Integer>();
+    private Map<Flower, Integer> flowers = new HashMap<Flower, Integer>();
 
     public FlowerGirl(String name) {
         this.name = name;
@@ -28,16 +28,20 @@ public class FlowerGirl implements Serializable{
         this.name = name;
     }
 
-    public Map getFlowers() {
+    public Map<Flower, Integer> getFlowers() {
         return flowers;
     }
 
-    public void setFlowers(Map flowers) {
+    public void setFlowers(Map<Flower, Integer> flowers) {
         this.flowers = flowers;
     }
 
-    public void addFlower(Flower flower, int quantity){
+    public void addFlower(Flower flower, int quantity) throws FlowerLogicException {
         flowers.put(flower, quantity);
+        if (quantity <= 0) {
+            throw new FlowerLogicException("Quantity must be > 0");
+        }
+
     }
 
     @Override

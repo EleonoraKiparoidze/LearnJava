@@ -7,14 +7,11 @@ public class RedRose extends Rose{
 
     public RedRose(String name, double freshness, double stemLength) {
         super(name, freshness, stemLength);
+        super.setName("Red");
     }
 
     public RedRose() {
     }
 
-    @Override
-    public void setName(String name){
-        name = " Red";
-    }
 
 }

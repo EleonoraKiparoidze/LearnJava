@@ -24,7 +24,9 @@ public abstract class Flower implements Serializable {
         return name;
     }
 
-    public abstract void setName(String name);
+    public  void setName(String name){
+        this.name = name;
+    }
 
     public double getFreshness() {
         return freshness;

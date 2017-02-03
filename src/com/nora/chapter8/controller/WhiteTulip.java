@@ -7,13 +7,11 @@ public class WhiteTulip extends Tulip {
 
     public WhiteTulip(String name, double freshness, double stemLength) {
         super(name, freshness, stemLength);
+        super.setName("White");
+
     }
 
     public WhiteTulip() {
     }
 
-    @Override
-    public void setName(String name) {
-        name = "  White";
-    }
 }

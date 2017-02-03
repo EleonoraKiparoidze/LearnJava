@@ -7,14 +7,10 @@ public abstract class Rose extends Flower{
 
      Rose(String name, double freshness, double stemLength) {
         super(name, freshness, stemLength);
+         super.setName("Rose");
     }
 
      Rose() {
-    }
-
-    @Override
-    public void setName(String name) {
-        name = "Rose";
     }
 
 

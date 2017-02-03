@@ -7,13 +7,10 @@ public abstract class Tulip extends Flower{
 
     Tulip(String name, double freshness, double stemLength) {
         super(name, freshness, stemLength);
+        super.setName("Tulip");
     }
 
     Tulip() {
     }
 
-    @Override
-    public void setName(String name) {
-        name = "Tulip";
-    }
 }

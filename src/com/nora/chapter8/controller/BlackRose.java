@@ -7,15 +7,12 @@ public class BlackRose extends Rose {
 
     public BlackRose(String name, double freshness, double stemLength) {
         super(name, freshness, stemLength);
+        super.setName("Black");
     }
 
     public BlackRose() {
     }
 
-    @Override
-    public void setName(String name){
-            name = " Black";
-        }
 
 
 }
