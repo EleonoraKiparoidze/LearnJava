@@ -14,7 +14,7 @@ import java.util.List;
 public class BouquetCalculator {
 
     public static double calculateAverageFreshness(Bouquet bouquet) {
-        int quantity = bouquet.getQuantity();
+        int quantity = bouquet.getFlowerList().size();
         List<Flower> flowerList = bouquet.getFlowerList();
         double freshness = 0;
         for (Flower flower : flowerList) {

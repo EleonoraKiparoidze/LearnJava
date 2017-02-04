@@ -1,5 +1,7 @@
 package com.nora.chapter8.controller;
 
+import com.nora.chapter8.exception.FlowerLogicException;
+
 import java.io.Serializable;
 
 /**
@@ -10,14 +12,31 @@ public abstract class Flower implements Serializable {
     private String name;
     private double freshness;
     private double stemLength;
+    private  int quantity;
 
-    Flower(String name, double freshness, double stemLength) {
+    Flower() {
+    }
+
+    public Flower(String name, double freshness, double stemLength, int quantity) throws FlowerLogicException {
         this.name = name;
         this.freshness = freshness;
         this.stemLength = stemLength;
+        if (quantity <= 0) {
+            throw new FlowerLogicException("Quantity must be > 0");
+        }
+        this.quantity = quantity;
+
     }
 
-    Flower() {
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) throws FlowerLogicException {
+        if (quantity <= 0) {
+            throw new FlowerLogicException("Quantity must be > 0");
+        }
+        this.quantity = quantity;
     }
 
     public String getName() {
@@ -53,6 +72,7 @@ public abstract class Flower implements Serializable {
 
         if (Double.compare(flower.freshness, freshness) != 0) return false;
         if (Double.compare(flower.stemLength, stemLength) != 0) return false;
+        if (quantity != flower.quantity) return false;
         return name != null ? name.equals(flower.name) : flower.name == null;
 
     }
@@ -66,6 +86,7 @@ public abstract class Flower implements Serializable {
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         temp = Double.doubleToLongBits(stemLength);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
+        result = 31 * result + quantity;
         return result;
     }
 
@@ -75,6 +96,7 @@ public abstract class Flower implements Serializable {
                 "name='" + name + '\'' +
                 ", freshness=" + freshness +
                 ", stemLength=" + stemLength +
+                ", quantity=" + quantity +
                 '}';
     }
 }

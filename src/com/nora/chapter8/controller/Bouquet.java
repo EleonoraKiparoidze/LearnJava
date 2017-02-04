@@ -1,5 +1,7 @@
 package com.nora.chapter8.controller;
 
+import com.nora.chapter8.exception.FlowerLogicException;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,28 +11,13 @@ import java.util.List;
  */
 public class Bouquet implements Serializable{
 
-    private int quantity;
-
     private List<Flower> flowerList = new ArrayList<>();
 
-    public Bouquet(int quantity, List<Flower> flowerList) {
-        this.quantity = quantity;
+    public Bouquet(List<Flower> flowerList) {
         this.flowerList = flowerList;
     }
 
     public Bouquet() {
-    }
-
-    public Bouquet(int quantity) {
-        this.quantity = quantity;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
     }
 
     public List<Flower> getFlowerList() {
@@ -41,8 +28,10 @@ public class Bouquet implements Serializable{
         this.flowerList = flowerList;
     }
 
-    public void addFlower ( Flower flower){
+    public void addFlower ( Flower flower, int quantity) throws FlowerLogicException {
+        flower.setQuantity(quantity);
         flowerList.add(flower);
+
     }
 
     @Override
@@ -52,22 +41,18 @@ public class Bouquet implements Serializable{
 
         Bouquet bouquet = (Bouquet) o;
 
-        if (quantity != bouquet.quantity) return false;
         return flowerList != null ? flowerList.equals(bouquet.flowerList) : bouquet.flowerList == null;
 
     }
 
     @Override
     public int hashCode() {
-        int result = quantity;
-        result = 31 * result + (flowerList != null ? flowerList.hashCode() : 0);
-        return result;
+        return flowerList != null ? flowerList.hashCode() : 0;
     }
 
     @Override
     public String toString() {
         return "Bouquet{" +
-                "quantity=" + quantity +
                 ", flowerList=" + flowerList +
                 '}';
     }

@@ -11,7 +11,7 @@ import java.util.Map;
  */
 public class FlowerGirl implements Serializable {
     private String name;
-    private Map<Flower, Integer> flowers = new HashMap<Flower, Integer>();
+    private Map<String, Flower> flowers = new HashMap<String, Flower>();
 
     public FlowerGirl(String name) {
         this.name = name;
@@ -28,20 +28,16 @@ public class FlowerGirl implements Serializable {
         this.name = name;
     }
 
-    public Map<Flower, Integer> getFlowers() {
+    public Map<String, Flower> getFlowers() {
         return flowers;
     }
 
-    public void setFlowers(Map<Flower, Integer> flowers) {
+    public void setFlowers(Map<String, Flower> flowers) {
         this.flowers = flowers;
     }
 
-    public void addFlower(Flower flower, int quantity) throws FlowerLogicException {
-        flowers.put(flower, quantity);
-        if (quantity <= 0) {
-            throw new FlowerLogicException("Quantity must be > 0");
-        }
-
+    public void addFlower(Flower flower){
+        flowers.put(flower.getName(), flower);
     }
 
     @Override

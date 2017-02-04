@@ -1,54 +1,63 @@
 package com.nora.chapter8.logic;
 
+import com.nora.chapter8.controller.Bouquet;
 import com.nora.chapter8.controller.Flower;
 import com.nora.chapter8.controller.FlowerGirl;
 import com.nora.chapter8.exception.FlowerLogicException;
 
+import java.util.Map;
 import java.util.Scanner;
 
 /**
  * Created by nora on 03.02.17.
  */
-public class DataAdder {
-    public static void addInformation() {
+class DataAdder {
+    static void addInformation() {
 
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter flower-girl name -->");
         String flowerGirlName = scanner.next();
         FlowerGirl flowerGirl = new FlowerGirl(flowerGirlName);
+        while (true) {
+            System.out.println("Menu -->");
+            System.out.println("1. Add flowers to flower girl;");
+            System.out.println("2. Make bouquet;");
+            System.out.println("3. Sort flowers in bouquet by freshness;");
+            System.out.println("4. Print flowers, that has some Stem Length;");
+            System.out.println("Select operation -->");
 
-        System.out.println("Menu -->");
-        System.out.println("1. Add flowers to flower girl;");
-        System.out.println("2. Make bouquet;");
-        System.out.println("3. Sort flowers in bouquet by freshness;");
-        System.out.println("4. Print flowers, that has some Stem Length;");
-        System.out.println("Select operation -->");
+            int operation = scanner.nextInt();
 
-        int operation = scanner.nextInt();
+            switch (operation) {
 
-        switch (operation) {
-
-            case 1: {
-                try {
-                    addFlowersToFlowerGirl(flowerGirl);
-                } catch (ClassNotFoundException | IllegalAccessException | InstantiationException e) {
-                    System.err.println("We don't have such flower! " + e);
-                } catch (FlowerLogicException e) {
-                    System.err.println(e.getCause());
+                case 1: {
+                    try {
+                        System.out.println(addFlowersToFlowerGirl(flowerGirl));
+                    } catch (ClassNotFoundException | IllegalAccessException | InstantiationException e) {
+                        System.err.println("We don't have such flower! " + e);
+                    } catch (FlowerLogicException e) {
+                        System.err.println(e.getCause());
+                    }
                 }
-            }
-            break;
+                break;
+                case 2: {
+                    try {
+                        System.out.println(makeBouquet(flowerGirl));
+                    } catch (FlowerLogicException e) {
+                        System.err.println(e.getCause());
+                    }
+                }
+                break;
 
+            }
         }
     }
 
-    private static void addFlowersToFlowerGirl(FlowerGirl flowerGirl) throws ClassNotFoundException, IllegalAccessException, InstantiationException, FlowerLogicException {
+    private static FlowerGirl addFlowersToFlowerGirl(FlowerGirl flowerGirl) throws ClassNotFoundException, IllegalAccessException, InstantiationException, FlowerLogicException {
 
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Add flowers to flower-girl.Enter flower name -->");
+        System.out.println("Enter flower name -->");
         String flowerName = scanner.next();
-        System.out.println("Add flowers to flower-girl.Enter quantity -->");
-        int quantity = scanner.nextInt();
 
         Class c = Class.forName("com.nora.chapter8.controller." + flowerName);
         Object obj = c.newInstance();
@@ -60,8 +69,32 @@ public class DataAdder {
         flower.setFreshness(scanner.nextDouble());
         System.out.println("Enter stem length -->");
         flower.setStemLength(scanner.nextDouble());
-        flowerGirl.addFlower(flower, quantity);
+        System.out.println("Enter quantity -->");
+        flower.setQuantity(scanner.nextInt());
+        flowerGirl.addFlower(flower);
 
-        System.out.println(flowerGirl);
+        return flowerGirl;
+    }
+
+    private static Bouquet makeBouquet(FlowerGirl flowerGirl) throws FlowerLogicException {
+        Map<String, Flower> flowerMap = flowerGirl.getFlowers();
+        Bouquet bouquet = new Bouquet();
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("How many flowers do you need?-->");
+        int flowerQuantity = scanner.nextInt();
+        int count = 0;
+        while (count < flowerQuantity) {
+            System.out.println("Enter flower name -->");
+            String flowerName = scanner.next();
+
+            System.out.println("Enter quantity -->");
+            int quantity = scanner.nextInt();
+
+            Flower flower = flowerMap.get(flowerName);
+            bouquet.addFlower(flower, quantity);
+            count++;
+        }
+        return bouquet;
     }
 }
