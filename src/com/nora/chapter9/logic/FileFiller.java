@@ -14,7 +14,7 @@ public class FileFiller {
              PrintWriter pw = new PrintWriter(bw)) {
 
             for (int number : numbers) {
-                pw.printf("%d%n" + number);
+                pw.printf("%d%n",number);
             }
         } catch (IOException e) {
             System.err.println("Error open file" + e);
@@ -31,7 +31,6 @@ public class FileFiller {
                 for (String res : s) {
                     System.out.println(res);
                 }
-
             }
         } catch (IOException e) {
             System.err.println(e);

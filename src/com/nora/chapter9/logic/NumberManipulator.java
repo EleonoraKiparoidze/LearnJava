@@ -22,7 +22,12 @@ public class NumberManipulator {
         } catch (FileNotFoundException e) {
             System.err.println("File not found!" + e);
         }
-        Collections.sort(numbers);
+        Collections.sort(numbers, new Comparator<Integer>() {
+            @Override
+            public int compare(Integer o1, Integer o2) {
+                return o1-o2;
+            }
+        });
         return numbers;
     }
 }

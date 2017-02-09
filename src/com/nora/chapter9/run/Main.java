@@ -5,6 +5,7 @@ import com.nora.chapter9.logic.FileFiller;
 import com.nora.chapter9.logic.NumberManipulator;
 
 import java.io.File;;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -22,10 +23,14 @@ public class Main {
             numbers.add((int) (1 + Math.random() * 100));
         }
         file = FileFiller.addNumbersToFile(file, numbers);
+        System.out.println("\nNOT Sorted-->");
         FileFiller.printFile(file);
 
         List<Integer> sortNumbers = NumberManipulator.sortNumbers(file);
-        File sortedFile = FileFiller.addNumbersToFile(file, sortNumbers);
+
+        File sortedFile = FileAdder.createFile("sortedNumbers.txt");
+        sortedFile = FileFiller.addNumbersToFile(sortedFile, sortNumbers);
+        System.out.println("\nSorted-->");
         FileFiller.printFile(sortedFile);
     }
 }
