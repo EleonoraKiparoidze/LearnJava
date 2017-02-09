@@ -3,26 +3,23 @@ package com.nora.chapter9.logic;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * Created by nora on 09.02.17.
+ */
 public class FileAdder {
-
-    public static File createFile( String fileName){
+    public static File addFile(String fileName){
         String s = File.separator;
-        File file = new File (s+"home"+s+"nora"+s+"IdeaProjects"+s+"LearnJava"+s+"src"+s+"com"+s+"nora"+s+"chapter9"+s+"file."+fileName);
-        if(file.exists()){
-            System.out.println(file.getName()+" exist!");
-            file.deleteOnExit();
-            System.out.println(file.getName()+" deleted!");
+        File file = new File(s + "home" + s + "nora" + s + "IdeaProjects" + s + "LearnJava" + s + "src" + s + "com" + s + "nora" + s + "chapter9" + s + "file" + s + fileName);
+        if (file.delete()) {
+            System.out.println("File deleted!");
         }
         else {
-            System.out.println(file.getName()+" doesn't exist!");
-        }
-        try {
-            if(file.createNewFile()){
-                System.out.println(file.getName()+" created!");
+            try {
+                if (file.createNewFile()) System.out.println("File -->" + file.getName());
+            } catch (IOException e) {
+                System.err.println(e);
             }
-        } catch (IOException e) {
-            System.err.println(e);
         }
-      return file;
+        return file;
     }
 }

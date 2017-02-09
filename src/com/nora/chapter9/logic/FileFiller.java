@@ -23,8 +23,7 @@ public class FileFiller {
     }
 
     public static void printFile(File file) {
-        BufferedReader br = null;
-        try (BufferedReader bufferedReader = br = new BufferedReader(new FileReader(file))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             String tmp = "";
             while ((tmp = br.readLine()) != null) {
                 String s[] = tmp.split("\\n");
