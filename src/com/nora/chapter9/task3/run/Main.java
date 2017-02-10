@@ -17,18 +17,10 @@ public class Main {
 
         String path = "/home/nora/IdeaProjects/LearnJava/src/com/nora/chapter9/task3/files/";
         File input = new File(path + "input.txt");
-        try {
-            if (!input.exists()) {
-                if (input.createNewFile())
-                    System.out.println("Created -->" + input.getName());
-            }
-        } catch (IOException e) {
-            System.err.println(e);
-        }
 
         StringBuilder stringBuilder = new StringBuilder();
         List<String> wordsList = new ArrayList<>();
-        Pattern pattern = Pattern.compile("([а-я[А-Я]])+");
+        Pattern pattern = Pattern.compile("([а-яА-Я])+");
         try (FileReader fr = new FileReader(input);
              Scanner scan = new Scanner(fr)) {
             while (scan.hasNext()) {
