@@ -18,7 +18,6 @@ public class Main {
         String path = "/home/nora/IdeaProjects/LearnJava/src/com/nora/chapter9/task3/files/";
         File input = new File(path + "input.txt");
 
-        StringBuilder stringBuilder = new StringBuilder();
         List<String> wordsList = new ArrayList<>();
         Pattern pattern = Pattern.compile("([а-яА-Я])+");
         try (FileReader fr = new FileReader(input);
@@ -33,7 +32,7 @@ public class Main {
             System.err.println(e);
         }
 
-
+        StringBuilder stringBuilder = new StringBuilder();
         for(int i=0; i<wordsList.size()-1;i++){
             char[] lettersFirst = wordsList.get(i).toUpperCase().toCharArray();
             char[] lettersSecond = wordsList.get(i+1).toUpperCase().toCharArray();
