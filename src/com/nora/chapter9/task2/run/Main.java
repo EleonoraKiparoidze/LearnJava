@@ -2,6 +2,7 @@ package com.nora.chapter9.task2.run;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Pattern;
@@ -32,22 +33,25 @@ public class Main {
              Scanner scan = new Scanner(fr)) {
             scan.useDelimiter("\\n+");
             while (scan.hasNextLine()) {
-                stringsLine.append(scan.nextLine()+"\n");
+                stringsLine.append(scan.nextLine() + "\n");
             }
         } catch (IOException e) {
             System.err.println(e);
         }
 
-            String[] lines = stringsLine.toString().split("\\n");
+        String[] lines = stringsLine.toString().split("\\n");
         StringBuilder newString = new StringBuilder();
-for(String line:lines){
-    String[] words = line.split(" ");
-    for(String word:words){
-        char newChar = Character.toUpperCase(word.charAt(0));
-        newString.append(word.replace(word.charAt(0),newChar));
-    }newString.append(" ");
-    newString.append("\n");
-}
+        for (String line : lines) {
+            String[] words = line.split("\\s+");
+            for (String word : words) {
+                if (word.length() > 0) {
+                    char newChar = Character.toUpperCase(word.charAt(0));
+                    newString.append(word.replace(word.charAt(0), newChar));
+                }
+                newString.append(" ");
+            }
+            newString.append("\n");
+        }
         System.out.println(newString);
 
     }

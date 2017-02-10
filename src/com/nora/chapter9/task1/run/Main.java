@@ -1,11 +1,10 @@
-package com.nora.chapter9.run;
+package com.nora.chapter9.task1.run;
 
-import com.nora.chapter9.logic.FileAdder;
-import com.nora.chapter9.logic.FileFiller;
-import com.nora.chapter9.logic.NumberManipulator;
+import com.nora.chapter9.task1.logic.FileAdder;
+import com.nora.chapter9.task1.logic.FileFiller;
+import com.nora.chapter9.task1.logic.NumberManipulator;
 
 import java.io.File;;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;

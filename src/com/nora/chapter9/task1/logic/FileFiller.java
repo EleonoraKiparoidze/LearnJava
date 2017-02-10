@@ -1,4 +1,4 @@
-package com.nora.chapter9.logic;
+package com.nora.chapter9.task1.logic;
 
 import java.io.*;
 import java.util.List;
