@@ -1,12 +1,10 @@
 package com.nora.chapter9.task2.run;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 /**
  * Created by nora on 10.02.17.
@@ -14,14 +12,14 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         String path = "/home/nora/IdeaProjects/LearnJava/src/com/nora/chapter9/task2/files/";
-        File input = new File(path+"input.txt");
-        File output = new File(path+"output.txt");
+        File input = new File(path + "input.txt");
+        File output = new File(path + "output.txt");
         try {
-            if(!input.exists()) {
+            if (!input.exists()) {
                 if (input.createNewFile())
                     System.out.println("Created -->" + input.getName());
             }
-            if(!output.exists()) {
+            if (!output.exists()) {
                 if (output.createNewFile())
                     System.out.println("Created -->" + output.getName());
             }
@@ -29,15 +27,28 @@ public class Main {
             System.err.println(e);
         }
 
-        List<String> stringList = new ArrayList<>();
+        StringBuilder stringsLine = new StringBuilder();
         try (FileReader fr = new FileReader(input);
-            Scanner scan = new Scanner(fr)){
+             Scanner scan = new Scanner(fr)) {
             scan.useDelimiter("\\n+");
-            while (scan.hasNextLine()){
-               stringList.add(scan.nextLine());
+            while (scan.hasNextLine()) {
+                stringsLine.append(scan.nextLine()+"\n");
             }
         } catch (IOException e) {
             System.err.println(e);
         }
+
+            String[] lines = stringsLine.toString().split("\\n");
+        StringBuilder newString = new StringBuilder();
+for(String line:lines){
+    String[] words = line.split(" ");
+    for(String word:words){
+        char newChar = Character.toUpperCase(word.charAt(0));
+        newString.append(word.replace(word.charAt(0),newChar));
+    }newString.append(" ");
+    newString.append("\n");
+}
+        System.out.println(newString);
+
     }
 }
