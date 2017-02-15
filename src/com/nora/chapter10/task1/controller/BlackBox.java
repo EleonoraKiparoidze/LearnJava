@@ -1,35 +1,37 @@
 package com.nora.chapter10.task1.controller;
 
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.LinkedList;
+import java.util.*;
 
 /**
  * Created by nora on 15.02.17.
  */
 public class BlackBox implements Collection<Double> {
     private int k;
-    private LinkedList<Double> numbersList = new LinkedList<>();
+    private SortedSet<Double> numbersSet = new TreeSet<>();
 
     public BlackBox() {
         k = 0;
     }
 
+    public SortedSet<Double> getNumbersSet() {
+        return numbersSet;
+    }
+
     @Override
     public int size() {
-        return numbersList.size();
+        return numbersSet.size();
     }
 
     @Override
     public boolean isEmpty() {
-        if (numbersList.size() == 0)
+        if (numbersSet.size() == 0)
             return true;
         return false;
     }
 
     @Override
     public boolean contains(Object o) {
-        for (Double number : numbersList) {
+        for (Double number : numbersSet) {
             if (number.equals(o))
                 return true;
         }
@@ -38,57 +40,57 @@ public class BlackBox implements Collection<Double> {
 
     @Override
     public Iterator iterator() {
-        return numbersList.iterator();
+        return numbersSet.iterator();
     }
 
     @Override
     public Object[] toArray() {
-        return numbersList.toArray();
+        return numbersSet.toArray();
     }
 
     @Override
     public <T> T[] toArray(T[] a) {
-        return numbersList.toArray(a);
+        return numbersSet.toArray(a);
     }
 
     @Override
     public boolean add(Double aDouble) {
         k++;
-        return numbersList.add(aDouble);
+        return numbersSet.add(aDouble);
     }
 
     @Override
     public boolean remove(Object o) {
         k--;
-        return numbersList.remove(o);
+        return numbersSet.remove(o);
     }
 
     @Override
     public boolean addAll(Collection c) {
         k = +c.size();
-        return numbersList.addAll(c);
+        return numbersSet.addAll(c);
     }
 
     @Override
     public void clear() {
         k = 0;
-        numbersList.clear();
+        numbersSet.clear();
     }
 
     @Override
     public boolean retainAll(Collection c) {
-        return numbersList.retainAll(c);
+        return numbersSet.retainAll(c);
     }
 
     @Override
     public boolean removeAll(Collection c) {
         k = 0;
-        return numbersList.removeAll(c);
+        return numbersSet.removeAll(c);
     }
 
     @Override
     public boolean containsAll(Collection c) {
-        return numbersList.containsAll(c);
+        return numbersSet.containsAll(c);
     }
 
     @Override
@@ -99,14 +101,14 @@ public class BlackBox implements Collection<Double> {
         BlackBox doubles = (BlackBox) o;
 
         if (k != doubles.k) return false;
-        return numbersList != null ? numbersList.equals(doubles.numbersList) : doubles.numbersList == null;
+        return numbersSet != null ? numbersSet.equals(doubles.numbersSet) : doubles.numbersSet == null;
 
     }
 
     @Override
     public int hashCode() {
         int result = k;
-        result = 31 * result + (numbersList != null ? numbersList.hashCode() : 0);
+        result = 31 * result + (numbersSet != null ? numbersSet.hashCode() : 0);
         return result;
     }
 
@@ -114,7 +116,7 @@ public class BlackBox implements Collection<Double> {
     public String toString() {
         return "BlackBox{" +
                 "k=" + k +
-                ", numbersList=" + numbersList +
+                ", numbersList=" + numbersSet +
                 '}';
     }
 }
