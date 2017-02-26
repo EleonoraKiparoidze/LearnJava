@@ -1,19 +1,16 @@
 package com.nora.chapter11.task1.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
-
 /**
  * Created by nora on 23.02.17.
  */
-public class Client extends Thread{
+public class Client extends Thread {
+    private  Boolean isServed ;
     private Restaurant restaurant;
     private CashDesk cashDesk;
     private String name;
 
 
-    public Client( String name, Restaurant restaurant) {
+    public Client(String name, Restaurant restaurant) {
         super(name);
         this.restaurant = restaurant;
     }
@@ -22,18 +19,27 @@ public class Client extends Thread{
     public void run() {
         cashDesk = chooseCashDesk();
         cashDesk.addClient(this);
-        System.out.println("Client " + this.getName() + " at cash Desk №"+ cashDesk.getNumber());
-        while(true){
-        if (canChooseAnotherCashDesk()) {
-            cashDesk.deleteClient(this);
-        }
-        }
-    }
+        System.out.println("Client " + this.getName() + " at cash Desk №" + cashDesk.getNumber());
+        isServed = cashDesk.isServed();
+        synchronized (cashDesk) {
+            try {
+                while (!isServed) {
+                    cashDesk.wait();
+                    if (canChooseAnotherCashDesk()) {
+                        cashDesk.deleteClient(this);
+                    }
+                }
+            }catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
 
-    private CashDesk chooseCashDesk(){
+            }
+        }
+
+    private CashDesk chooseCashDesk() {
         CashDesk current = restaurant.getCashDesks().get(0);
         for (CashDesk cashDesk : restaurant.getCashDesks()) {
-            if(cashDesk.getClients().size() < current.getClients().size()) {
+            if (cashDesk.getClients().size() < current.getClients().size()) {
                 current = cashDesk;
             }
         }
@@ -41,9 +47,9 @@ public class Client extends Thread{
     }
 
     private boolean canChooseAnotherCashDesk() {
-        CashDesk current = chooseCashDesk();
-        if(current.getClients().size() + 1 < cashDesk.getClients().size()) {
-            cashDesk = current;
+        CashDesk newCashDesk = chooseCashDesk();
+        if (newCashDesk.getClients().size() + 1 < cashDesk.getClients().size()) {
+            cashDesk = newCashDesk;
             cashDesk.addClient(this);
             System.out.println("Client " + this.getName() + " moved to cashDesk №" + cashDesk.getNumber());
             return true;

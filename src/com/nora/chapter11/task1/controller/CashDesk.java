@@ -13,10 +13,12 @@ import java.util.concurrent.atomic.AtomicLong;
  */
 public class CashDesk extends Thread {
     private int number;
-    private int capacity = 32;
-    private BlockingQueue<Client> clients = new ArrayBlockingQueue<Client>(capacity);
+    private final int capacity = 32;
+    private AtomicLong numbersOfClients;
+    private final BlockingQueue<Client> clients = new ArrayBlockingQueue<>(capacity);
 
     public CashDesk(int number) {
+        numbersOfClients = new AtomicLong(0);
         this.number = number;
     }
 
@@ -24,28 +26,39 @@ public class CashDesk extends Thread {
         return number;
     }
 
-    public void addClient(Client client){
+    public void addClient(Client client) {
+        numbersOfClients.incrementAndGet();
         clients.offer(client);
     }
 
-    public void deleteClient(Client client){
-        try {
-            clients.take();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+    public void deleteClient(Client client) {
+        numbersOfClients.decrementAndGet();
+        clients.remove(client);
     }
 
     public BlockingQueue<Client> getClients() {
         return clients;
     }
+
+    public AtomicLong getNumbersOfClients() {
+        return numbersOfClients;
+    }
+
+    public Boolean isServed() {
+        return Boolean.TRUE;
+    }
+
     @Override
     public void run() {
         try {
             while (true) {
-                TimeUnit.SECONDS.sleep(10);
-                Client client = clients.take();
-                System.out.println("Client " + client.getName() + " is served on cashDesk №" + getNumber());
+                synchronized (this) {
+                    TimeUnit.SECONDS.sleep(new Random().nextInt(12));
+                    Client client = clients.take();
+                    System.out.println("Client " + client.getName() + " is served on cashDesk №" + getNumber());
+                    numbersOfClients.decrementAndGet();
+                    this.notify();
+                }
             }
         } catch (InterruptedException e) {
             e.printStackTrace();

@@ -2,7 +2,9 @@ package com.nora.chapter11.task1.run;
 
 import com.nora.chapter11.task1.controller.CashDesk;
 import com.nora.chapter11.task1.controller.Client;
+import com.nora.chapter11.task1.controller.Info;
 import com.nora.chapter11.task1.controller.Restaurant;
+import com.nora.chapter11.test.priority.ThreadThread;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,11 +33,20 @@ public class RestaurantRun {
         cashDesk3.start();
         cashDesk4.start();
 
-        new Client("client 100",restaurant ).start();
-        for (int i = 1; i < 20; i++) {
+        Thread info1 = new Thread(new Info(cashDesk1));
+        Thread info2 = new Thread(new Info(cashDesk2));
+        Thread info3 = new Thread(new Info(cashDesk3));
+        Thread info4 = new Thread(new Info(cashDesk4));
+
+        for (int i = 1; i < 40; i++) {
             Client client =  new Client( "client"+i,restaurant);
             client.start();
         }
+        new Client("Eleonora ",restaurant ).start();
 
+        info1.start();
+        info2.start();
+        info3.start();
+        info4.start();
     }
 }
