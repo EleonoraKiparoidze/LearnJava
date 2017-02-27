@@ -35,7 +35,7 @@ public class RestaurantRun {
 
         Thread info = new Thread(new Info(restaurant));
 
-        for (int i = 1; i < 6; i++) {
+        for (int i = 1; i < 12; i++) {
             Client client =  new Client( "client"+i,restaurant);
             client.start();
         }
