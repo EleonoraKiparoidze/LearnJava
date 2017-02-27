@@ -7,7 +7,6 @@ public class Client extends Thread {
     private  Boolean isServed ;
     private Restaurant restaurant;
     private CashDesk cashDesk;
-    private String name;
 
 
     public Client(String name, Restaurant restaurant) {
@@ -20,15 +19,17 @@ public class Client extends Thread {
         cashDesk = chooseCashDesk();
         cashDesk.addClient(this);
         System.out.println("Client " + this.getName() + " at cash Desk №" + cashDesk.getNumber());
-        isServed = cashDesk.isServed();
         synchronized (cashDesk) {
             try {
-                while (!isServed) {
+                isServed = cashDesk.isServed();
+                if(!isServed) {
                     cashDesk.wait();
-                    if (canChooseAnotherCashDesk()) {
-                        cashDesk.deleteClient(this);
-                    }
                 }
+                  else {
+                      if (canChooseAnotherCashDesk()) {
+                            cashDesk.deleteClient(this);
+                        }
+                    }
             }catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -48,7 +49,7 @@ public class Client extends Thread {
 
     private boolean canChooseAnotherCashDesk() {
         CashDesk newCashDesk = chooseCashDesk();
-        if (newCashDesk.getClients().size() + 1 < cashDesk.getClients().size()) {
+        if (newCashDesk.getClients().size()+1 < cashDesk.getClients().size()) {
             cashDesk = newCashDesk;
             cashDesk.addClient(this);
             System.out.println("Client " + this.getName() + " moved to cashDesk №" + cashDesk.getNumber());

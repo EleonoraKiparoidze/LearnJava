@@ -20,33 +20,29 @@ public class RestaurantRun {
         Restaurant restaurant = new Restaurant("Marconi");
         CashDesk cashDesk1 = new CashDesk(1);
         CashDesk cashDesk2 = new CashDesk(2);
-        CashDesk cashDesk3 = new CashDesk(3);
-        CashDesk cashDesk4 = new CashDesk(4);
+        //CashDesk cashDesk3 = new CashDesk(3);
+        //CashDesk cashDesk4 = new CashDesk(4);
 
         restaurant.addCashDesk(cashDesk1);
         restaurant.addCashDesk(cashDesk2);
-        restaurant.addCashDesk(cashDesk3);
-        restaurant.addCashDesk(cashDesk4);
+        //restaurant.addCashDesk(cashDesk3);
+        //restaurant.addCashDesk(cashDesk4);
 
         cashDesk1.start();
         cashDesk2.start();
-        cashDesk3.start();
-        cashDesk4.start();
+       // cashDesk3.start();
+       // cashDesk4.start();
 
-        Thread info1 = new Thread(new Info(cashDesk1));
-        Thread info2 = new Thread(new Info(cashDesk2));
-        Thread info3 = new Thread(new Info(cashDesk3));
-        Thread info4 = new Thread(new Info(cashDesk4));
+        Thread info = new Thread(new Info(restaurant));
 
-        for (int i = 1; i < 40; i++) {
+        for (int i = 1; i < 6; i++) {
             Client client =  new Client( "client"+i,restaurant);
             client.start();
         }
         new Client("Eleonora ",restaurant ).start();
 
-        info1.start();
-        info2.start();
-        info3.start();
-        info4.start();
+        info.start();
+
+
     }
 }

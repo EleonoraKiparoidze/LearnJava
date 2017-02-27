@@ -6,22 +6,23 @@ import java.util.concurrent.TimeUnit;
  * Created by nora on 26.02.17.
  */
 public class Info implements Runnable {
-    private CashDesk cashDesk;
+    private Restaurant restaurant;
 
-    public Info(CashDesk cashDesk) {
-        this.cashDesk = cashDesk;
+    public Info(Restaurant restaurant) {
+        this.restaurant = restaurant;
     }
 
     @Override
     public void run() {
-        try {
-            while (true) {
-                TimeUnit.SECONDS.sleep(1);
-                System.err.println("Quantity of clients in cashDesk№" + cashDesk.getNumber() + " : " + cashDesk.getNumbersOfClients());
-                TimeUnit.SECONDS.sleep(10);
+        while (true) {
+            try {
+                TimeUnit.SECONDS.sleep(5);
+                for (CashDesk cashDesk : restaurant.getCashDesks()) {
+                        System.err.println("Quantity of clients in cashDesk№" + cashDesk.getNumber() + " : " + cashDesk.getNumbersOfClients());
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
-        }catch (InterruptedException e) {
-            e.printStackTrace();
         }
 
     }

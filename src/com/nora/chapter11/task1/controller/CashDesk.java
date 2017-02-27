@@ -14,6 +14,8 @@ import java.util.concurrent.atomic.AtomicLong;
 public class CashDesk extends Thread {
     private int number;
     private final int capacity = 32;
+
+    private boolean isServed;
     private AtomicLong numbersOfClients;
     private final BlockingQueue<Client> clients = new ArrayBlockingQueue<>(capacity);
 
@@ -45,7 +47,7 @@ public class CashDesk extends Thread {
     }
 
     public Boolean isServed() {
-        return Boolean.TRUE;
+        return isServed;
     }
 
     @Override
@@ -57,6 +59,7 @@ public class CashDesk extends Thread {
                     Client client = clients.take();
                     System.out.println("Client " + client.getName() + " is served on cashDesk №" + getNumber());
                     numbersOfClients.decrementAndGet();
+                    isServed = true;
                     this.notify();
                 }
             }
