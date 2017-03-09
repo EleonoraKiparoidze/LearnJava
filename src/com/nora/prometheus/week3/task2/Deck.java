@@ -82,7 +82,8 @@ public class Deck {
     public void order() {
         for (int i = 0; i < cards.length - 1; i++) {
             for (int j = i + 1; j < cards.length; j++) {
-                if (cards[i].getSuit().getName() == Suit.HEARTS.getName()){
+                if (cards[i].getSuit().getName().equals(Suit.HEARTS.getName())){
+
                 }
             }
         }
