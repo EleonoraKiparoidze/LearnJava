@@ -35,13 +35,13 @@ public class LinkedList {
         linkedList.add(15);
         linkedList.add(16);
         System.out.println(linkedList.get(2));
-        System.out.println(linkedList.delete(2));
+        System.out.println(linkedList.delete(8));
         System.out.println(linkedList.get(2));
     }
 
     /* Отримати елемент по індексу, повертає null якщо такий елемент недоступний */
     public Integer get(int index) {
-        if (index>=count && index < 0 ){
+        if (index>=count || index < 0 ){
             return null;
         }
 
@@ -54,21 +54,29 @@ public class LinkedList {
     }
     /* Вилучення елементу за індексом, повертає true у разі успіху або false в іншому випадку */
     public boolean delete(int index) {
-        if (index>=count && index < 0 ){
+        if (index>=count || index < 0 ){
             return false;
         }
+        else {
         Node prev = first;
         Node next = first;
-        Node current = first;
+
         for (int i = 0; i < index-1; i++) {
+            if(prev.getNext() == null ){
+                return false;
+            }
             prev = prev.getNext();
         }
         for (int i = 0; i < index+1; i++) {
+            if(next.getNext() == null ){
+                return false;
+            }
             next =  next.getNext();
         }
         prev.setNext(next);
         count--;
         return true;
+        }
     }
     /*Поверта розмір списку: якщо елементів в списку нема то повертає 0 (нуль)*/
     public int size() {
