@@ -1,5 +1,7 @@
 package com.nora.prometheus.week2;
 
+import java.util.LinkedList;
+
 /**
  * Created by nora on 22.02.17.
  */
