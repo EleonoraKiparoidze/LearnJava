@@ -1,8 +1,5 @@
 package com.nora.prometheus.week3.task2;
 
-import java.lang.reflect.Array;
-import java.util.*;
-import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Created by nora on 09.03.17.
@@ -21,15 +18,15 @@ public class Deck {
 
     public static void main(String[] args) {
         Deck deck = new Deck();
-        deck.order();
-        System.out.println(deck.count);
+        //deck.order();
 
+
+        deck.shuffle();
         for (Card card : deck.cards) {
             System.out.println(card.getRank().getName() + "   " + card.getSuit().getName());
-            deck.drawOne();
+
         }
-        Card card1 = deck.drawOne();
-        System.out.println(card1);
+
     }
 
     public void addAllCards() {
@@ -56,31 +53,13 @@ public class Deck {
 
     //Перемішує колоду у випадковому порядку
     public void shuffle() {
-        int rankValue = 0;
-        int cardCount = 0;
-        int suitValue = 0;
-        while (cardCount != 36) {
-
-            if (rankValue >= Rank.values.length) {
-                rankValue = 0;
-            }
-            if (suitValue >= Suit.values.length) {
-                suitValue = 0;
-            }
-
-            this.cards[cardCount] = new Card(Rank.values[rankValue], Suit.values[suitValue]);
-            cardCount++;
-            suitValue++;
-            rankValue++;
-
-        }
-        Random rnd = new Random();
         for (int i = cards.length - 1; i > 0; i--) {
-            int index = rnd.nextInt(i + 1);
+            int index = (int) (Math.random()*(i+1));
             Card card = cards[index];
             cards[index] = cards[i];
             cards[i] = card;
         }
+
     }
 
     /* * Впорядкування колоди за мастями та значеннями
