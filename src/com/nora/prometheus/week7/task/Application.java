@@ -27,7 +27,6 @@ public class Application {
                     second = numbers.pop();
                     try{
                     numbers.push(first / second);
-                        throw new ArithmeticException("Arifmetic");
                     }catch (ArithmeticException e){
                         System.out.println(e);
                     }
@@ -56,7 +55,7 @@ public class Application {
 
     public static void main(String[] args) {
 
-        System.out.println(parse("0 0 /"));
+        System.out.println(parse("0 0 / ("));
     }
 
 }
