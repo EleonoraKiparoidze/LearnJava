@@ -3,10 +3,10 @@ package com.nora.prometheus.week5;
 /**
  * Created by nora on 24.03.17.
  */
-public class DateNow implements Command{
+public class Date implements Command{
     private String [] text;
 
-    public DateNow(String[] text) {
+    public Date(String[] text) {
         this.text = text;
     }
 

@@ -6,42 +6,51 @@ package com.nora.prometheus.week5;
 public class Application {
     public static void main(String[] args) {
         Command command;
-        if(args == null){
+        if (args == null || args.length == 0) {
             System.out.println("Error");
         }
-        if (args != null) {
+        else {
             switch (args[0]) {
-                case "help":{
-                    command = new Help(args);
-                    command.execute();
+                case "help": {
+                    if(args.length != 1){
+                        System.out.println("Error");
+                    }else {
+                        command = new Help(args);
+                        command.execute();
+                    }
                 }
                 break;
-                case "echo":{
-                    if(args[1]==null || args[1].equals("")){
+                case "echo": {
+                    if (args[1] == null || args[1].equals(" ") || args.length !=2) {
                         System.out.println("Error");
-                    }
-                    else {
+                    } else {
                         command = new Echo(args);
                         command.execute();
                     }
                 }
                 break;
-                case "data":{
-                    if( !args[1].equals("now")){
+                case "date": {
+                    if ( args.length !=2) {
+                        System.out.println("Error");
+                    } else if (!args[1].equals("now")) {
                         System.out.println("Error");
                     }
                     else {
-                        command = new DateNow(args);
+                        command = new Date(args);
                         command.execute();
                     }
                 }
                 break;
-                case "exit":{
-                    command = new Exit(args);
-                    command.execute();
+                case "exit": {
+                    if(args.length != 1){
+                        System.out.println("Error");
+                    }else {
+                        command = new Exit(args);
+                        command.execute();
+                    }
                 }
                 break;
-                default:{
+                default: {
                     System.out.println("Error");
                 }
                 break;
