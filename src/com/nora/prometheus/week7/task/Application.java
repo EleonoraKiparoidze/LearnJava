@@ -2,7 +2,7 @@ package com.nora.prometheus.week7.task;
 
 import java.util.Deque;
 import java.util.LinkedList;
-import java.util.stream.Collector;
+import java.util.NoSuchElementException;
 
 /**
  * Created by nora on 31.03.17.
@@ -10,52 +10,79 @@ import java.util.stream.Collector;
 public class Application {
     public static double parse(String rpnString) {
 
-        String[] rpn = rpnString.split(" ");
-        double first;
-        double second;
+        String newRpn = rpnString.replaceAll("[\\s]+", " ");
+        String[] rpn = newRpn.trim().split(" ");
+        Double first;
+        Double second;
         Deque<Double> numbers = new LinkedList<>();
-        for (int i = 0; i < rpn.length; i++) {
-            if (rpn[i].equals("*") || rpn[i].equals("+") || rpn[i].equals("/") || rpn[i].equals("-")) {
-                if (rpn[i].equals("*")) {
-                    first = numbers.pop();
-                    System.out.println(first);
-                    second = numbers.pop();
-                    System.out.println(second);
-                    numbers.push(first * second);
-                } else if (rpn[i].equals("/")) {
-                    first = numbers.pop();
-                    second = numbers.pop();
-                    try{
-                    numbers.push(first / second);
-                    }catch (ArithmeticException e){
-                        System.out.println(e);
-                    }
+        for (String aRpn : rpn) {
+            if (aRpn.equals("*") || aRpn.equals("+") || aRpn.equals("/") || aRpn.equals("-")) {
+                switch (aRpn) {
+                    case "*":
+                        try {
+                            first = numbers.pop();
+                            second = numbers.pop();
+                        } catch (NoSuchElementException e) {
+                            throw new RPNParserException();
+                        }
+                        numbers.push(first * second);
+                        break;
+                    case "/":
+                        try {
+                            first = numbers.pop();
+                            second = numbers.pop();
+                            if (second == 0  ) {
+                                throw new ArithmeticException();
+                            } else {
+                                numbers.push(second / first);
+                            }
+                        } catch (NoSuchElementException e) {
+                            throw new RPNParserException();
+                        }
 
-                } else if (rpn[i].equals("-")) {
-                    first = numbers.pop();
-                    second = numbers.pop();
-                    numbers.push(first - second);
-                } else if (rpn[i].equals("+")) {
-                    first = numbers.pop();
-                    second = numbers.pop();
-                    numbers.push(first + second);
+                        break;
+                    case "-":
+                        try {
+                            first = numbers.pop();
+                            second = numbers.pop();
+                        } catch (NoSuchElementException e) {
+                            throw new RPNParserException();
+                        }
+                        numbers.push(second - first);
+                        break;
+                    case "+":
+                        try {
+                            first = numbers.pop();
+                            second = numbers.pop();
+                        } catch (NoSuchElementException e) {
+                            throw new RPNParserException();
+                        }
+                        numbers.push(first + second);
+                        break;
                 }
-            }else {
+            } else {
                 try {
-                    numbers.push(Double.parseDouble(rpn[i]));
-                } catch (RPNParserException e) {
-                    System.out.println(e);
+                    numbers.push(Double.parseDouble(aRpn));
+                } catch (NumberFormatException e) {
+                    throw new RPNParserException();
                 }
             }
         }
-        System.out.println(numbers);
+        Double result;
+        try {
+            result = numbers.pop();
+        } catch (NoSuchElementException e) {
+            throw new RPNParserException();
+        }
 
-        return numbers.pop();
+        return result;
     }
 
     public static void main(String[] args) {
 
-        System.out.println(parse("0 0 / ("));
+        System.out.println(parse("1   2 /"));
+
     }
+
 
 }
